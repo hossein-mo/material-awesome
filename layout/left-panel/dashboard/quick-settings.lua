@@ -42,7 +42,7 @@ return wibox.widget {
 					require('widget.volume-slider'),
 					require('widget.airplane-mode'),
 					require('widget.bluetooth-toggle'),
-					require('widget.blue-light')
+					table.pack(require('widget.blue-light'))[1]
 				},
 				bg = beautiful.groups_bg,
 				shape = function(cr, width, height)

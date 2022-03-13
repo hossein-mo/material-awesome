@@ -67,7 +67,7 @@ return function(_, panel)
 				spacing = dpi(7),
 				search_button,
 				require('layout.left-panel.dashboard.hardware-monitor'),
-				require('layout.left-panel.dashboard.quick-settings'),
+				table.pack(require('layout.left-panel.dashboard.quick-settings'))[1],
 
 			},
 			nil,
