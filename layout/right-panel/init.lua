@@ -142,7 +142,7 @@ local right_panel = function(s)
 						require('widget.weather'),
 						--require('widget.email'),
 						--require('widget.social-media'),
-						require('widget.calculator')
+						table.pack(require('widget.calculator'))[1]
 					},
 
 				},
