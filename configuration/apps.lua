@@ -68,7 +68,7 @@ return {
 		'ibus-daemon --xim --daemonize',
 
 		-- scream audio sink for windows10 VM audio
-    	'scream-start',
+    	--'scream-start',
 
 		-- turn on numlock
     	'numlockx on',
