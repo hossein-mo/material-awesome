@@ -154,6 +154,9 @@ ruled.client.connect_signal(
 				class = {
 					'looking-glass-client',
 					'Virt-manager'
+				},
+				name = {
+					'Win10VM'
 				}
 			},
 			properties = {
