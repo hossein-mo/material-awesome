@@ -187,7 +187,7 @@ local client_keys = awful.util.table.join(
 	-- Screen management
 	awful.key(
 		{modkey},
-		'o',
+		's',
 		function()
 			client.focus:move_to_screen()
 		end,

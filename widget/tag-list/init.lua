@@ -162,8 +162,8 @@ local tag_list = function(s)
 			--)
 		),
 		{},
-		list_update,
-		wibox.layout.fixed.vertical()
+		list_update
+		-- wibox.layout.fixed.vertical()
 	)
 end
 return tag_list

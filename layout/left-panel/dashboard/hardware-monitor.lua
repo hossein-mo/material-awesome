@@ -35,7 +35,7 @@ return wibox.widget {
 			require('widget.cpu-meter'),
 			require('widget.ram-meter'),
 			require('widget.temperature-meter'),
-			require('widget.harddrive-meter')
+			table.pack(require('widget.harddrive-meter'))[1]
 		},
 		bg = beautiful.groups_bg,
 		shape = function(cr, width, height)

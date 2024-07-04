@@ -5,18 +5,19 @@ local dir = os.getenv('HOME') .. '/.config/awesome/theme/icons/'
 return {
 
 	-- Action Bar
-	web_browser 		= dir .. 'tag-list/' .. 'web-browser.svg',
-	text_editor			= dir .. 'tag-list/' .. 'text-editor.svg',
-	social				= dir .. 'tag-list/' .. 'social.svg',
-	file_manager 		= dir .. 'tag-list/' .. 'file-manager.svg',
-	multimedia 			= dir .. 'tag-list/' .. 'multimedia.svg',
-	games 				= dir .. 'tag-list/' .. 'games.svg',
-	development 		= dir .. 'tag-list/' .. 'development.svg',
-	sandbox 			= dir .. 'tag-list/' .. 'sandbox.svg',
-	terminal 			= dir .. 'tag-list/' .. 'terminal.svg',
-	graphics 			= dir .. 'tag-list/' .. 'graphics.svg',
-	menu 				= dir .. 'tag-list/' .. 'menu.svg',
-	close_small 		= dir .. 'tag-list/' .. 'close-small.svg',
+	web_browser 		= dir .. 'tag-list.floppy/' .. 'web-browser.svg',
+	text_editor			= dir .. 'tag-list.floppy/' .. 'text-editor.svg',
+	social				= dir .. 'tag-list.floppy/' .. 'social.svg',
+	file_manager 		= dir .. 'tag-list.floppy/' .. 'file-manager.svg',
+	multimedia 			= dir .. 'tag-list.floppy/' .. 'multimedia.svg',
+	music 				= dir .. 'tag-list.floppy/' .. 'music.svg',
+	games 				= dir .. 'tag-list.floppy/' .. 'games.svg',
+	development 		= dir .. 'tag-list.floppy/' .. 'development.svg',
+	sandbox 			= dir .. 'tag-list.floppy/' .. 'sandbox.svg',
+	terminal 			= dir .. 'tag-list.floppy/' .. 'terminal.svg',
+	graphics 			= dir .. 'tag-list.floppy/' .. 'graphics.svg',
+	menu 				= dir .. 'tag-list.floppy/' .. 'menu.svg',
+	close_small 		= dir .. 'tag-list.floppy/' .. 'close-small.svg',
 
 	-- Others/System UI
 	close 				= dir .. 'close.svg',

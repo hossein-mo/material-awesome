@@ -24,7 +24,7 @@ local create_clock = function(s)
 	s.clock_widget = wibox.widget {
 		{
 			s.clock_widget,
-			margins = dpi(7),
+			margins = dpi(1),
 			widget = wibox.container.margin
 		},
 		widget = clickable_container

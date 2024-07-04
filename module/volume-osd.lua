@@ -49,7 +49,7 @@ vol_osd_slider:connect_signal(
 	'property::value',
 	function()
 		local volume_level = vol_osd_slider:get_value()
-		awful.spawn('amixer -D pulse sset Master ' .. volume_level .. '%', false)
+		awful.spawn('pamixer --set-volume ' .. volume_level, false)
 
 		-- Update textbox widget text
 		osd_value.text = volume_level .. '%'
@@ -65,7 +65,31 @@ vol_osd_slider:connect_signal(
 		end
 	end
 )
+local update_slider = function()
+	awful.spawn.easy_async_with_shell(
+		'pamixer --get-volume', 
+		function(stdout)
+			local volume = string.match(stdout, '(%d+)')
+			vol_osd_slider:set_value(tonumber(volume))
+		end
+	)
+end
 
+update_slider()
+awesome.connect_signal(
+	'module::volume_osd:add',
+	function()
+		awful.spawn('pamixer -i 5', false)
+		update_slider()
+	end
+)
+awesome.connect_signal(
+	'module::volume_osd:sub',
+	function()
+		awful.spawn('pamixer -d 5', false)
+		update_slider()
+	end
+)
 vol_osd_slider:connect_signal(
 		'button::press',
 		function()

@@ -8,11 +8,16 @@ SCREEN="LVDS|eDP"
 ############################
 
 GET_SCREEN=$(xrandr | grep -P "($SCREEN)" | awk '{print $1}')
+LIGHT_SET_COMMAND="light -S "
+LIGHT_INC_COMMAND="light -A "
+LIGHT_DEC_COMMAND="light -U "
+LIGHT_GET_COMMAND=`light -G`
 SET_COMMAND="xrandr --output $GET_SCREEN --brightness"
 GET_COMMAND=`xrandr --verbose | grep -iP "(Brightness| connected)" | perl -pe "s/(\t+| connected.+|Brightness)//g" | perl -pe "s/\n/,/" | perl -pe "s/,:/:/g" | perl -pe "s/,/\n/g" | grep $GET_SCREEN | awk '{print $2}'`
 
 # Get the brightness and multiply by 100 to get the percentage then use perl to remove the decimal
-BRIGHTNESS=$(echo "$GET_COMMAND*100" | bc | perl -pe "s/\.\d+$//")
+# BRIGHTNESS=$(echo "$GET_COMMAND*100" | bc | perl -pe "s/\.\d+$//")
+BRIGHTNESS=$(echo $LIGHT_GET_COMMAND | bc | perl -pe "s/\.\d+$//")
 
 helptext () {
     printf "Brightness utility using xrandr as backend.
@@ -62,30 +67,10 @@ else
         echo $BRIGHTNESS
     elif [ "$1" == "add" ]
     then
-        # Increment current brightness
-        NEW_BRIGHTNESS=$(expr $BRIGHTNESS + $2)
-
-        # Set the brightness and make sure we do not go below 10% or above 100%
-        if [ $(($NEW_BRIGHTNESS)) -gt 99 ]; then
-            $SET_COMMAND 1.0
-        elif [ $(($NEW_BRIGHTNESS)) -lt 10 ]; then
-            $SET_COMMAND 0.10
-        else
-            $SET_COMMAND 0.$NEW_BRIGHTNESS
-        fi
+        $LIGHT_INC_COMMAND $2
     elif [ "$1" == "sub" ]
     then
-        # Decrease current brightness
-        NEW_BRIGHTNESS=$(expr $BRIGHTNESS - $2)
-
-        # Set the brightness and make sure we do not go below 10% or above 100%
-        if [ $(($NEW_BRIGHTNESS)) -gt 99 ]; then
-            $SET_COMMAND 1.0
-        elif [ $(($NEW_BRIGHTNESS)) -lt 10 ]; then
-            $SET_COMMAND 0.10
-        else
-            $SET_COMMAND 0.$NEW_BRIGHTNESS
-        fi      
+        $LIGHT_DEC_COMMAND $2  
     else
         helptext
     fi

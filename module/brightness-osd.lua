@@ -80,7 +80,17 @@ bri_osd_slider:connect_signal(
 		awful.screen.focused().show_bri_osd = true
 	end
 )
+local update_slider = function()
+	awful.spawn.easy_async_with_shell(
+		'light -G', 
+		function(stdout)
+			local brightness = string.match(stdout, '(%d+)')
+			bri_osd_slider:set_value(tonumber(brightness))
+		end
+	)
+end
 
+update_slider()
 -- The emit will come from brightness slider
 awesome.connect_signal(
 	'module::brightness_osd',
@@ -88,7 +98,20 @@ awesome.connect_signal(
 		bri_osd_slider:set_value(brightness)
 	end
 )
-
+awesome.connect_signal(
+	'module::brightness_osd:add',
+	function()
+		awful.spawn('light -A 10', false)
+		update_slider()
+	end
+)
+awesome.connect_signal(
+	'module::brightness_osd:sub',
+	function()
+		awful.spawn('light -U 10', false)
+		update_slider()
+	end
+)
 local icon = wibox.widget {
 	{
 		image = icons.brightness,
